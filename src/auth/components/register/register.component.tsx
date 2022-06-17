@@ -1,9 +1,11 @@
 import * as React from "react";
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { ChangeEventHandler, FormEventHandler, useRef, useState } from "react";
 
 import { BackendErrorsInterface } from "src/shared/types/backendErrors.interface";
 import { authService } from "src/auth/services/auth.service";
 import { BackendErrors } from "src/shared/components/backendErrors/backendErrors.component";
+import { Link, useHref } from "react-router-dom";
+import { persistanceService } from "src/shared/services/persistance.service";
 
 interface IRegisterProps {}
 
@@ -30,8 +32,8 @@ const Register: React.FC<IRegisterProps> = () => {
 
     if (error && error.msg) {
       setErrors(error.msg);
-    } else {
-      console.log("Успешно");
+    } else if (result) {
+      persistanceService.set("accessToken", result.user.token);
     }
   };
 
@@ -42,7 +44,7 @@ const Register: React.FC<IRegisterProps> = () => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Sign up</h1>
             <p className="text-xs-center">
-              <a>Have an account?</a>
+              <Link to={"/login"}>Have an account?</Link>
             </p>
 
             {errors && <BackendErrors errors={errors} />}
