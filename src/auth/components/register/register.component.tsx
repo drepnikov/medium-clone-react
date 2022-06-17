@@ -1,16 +1,21 @@
 import * as React from "react";
-import { ChangeEventHandler, FormEventHandler, useRef, useState } from "react";
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { Link } from "react-router-dom";
 
-import { BackendErrorsInterface } from "src/shared/types/backendErrors.interface";
-import { authService } from "src/auth/services/auth.service";
 import { BackendErrors } from "src/shared/components/backendErrors/backendErrors.component";
-import { Link, useHref } from "react-router-dom";
-import { persistanceService } from "src/shared/services/persistance.service";
+import { useAppDispatch } from "src/shared/store/hooks/store.hook";
+import {
+  useIsSubmittingSelector,
+  useValidationErrorsSelector,
+} from "src/auth/store/selectors";
+import { registerThunk } from "src/auth/store/thunks/register.thunk";
 
 interface IRegisterProps {}
 
 const Register: React.FC<IRegisterProps> = () => {
-  const [errors, setErrors] = useState<BackendErrorsInterface | null>(null);
+  const validationErrors = useValidationErrorsSelector();
+  const isSubmitting = useIsSubmittingSelector();
+  const dispatch = useAppDispatch();
 
   const [formFields, setFormFields] = useState({
     username: "",
@@ -28,13 +33,7 @@ const Register: React.FC<IRegisterProps> = () => {
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    const { result, error } = await authService.register({ user: formFields });
-
-    if (error && error.msg) {
-      setErrors(error.msg);
-    } else if (result) {
-      persistanceService.set("accessToken", result.user.token);
-    }
+    dispatch(registerThunk({ user: formFields }));
   };
 
   return (
@@ -47,7 +46,7 @@ const Register: React.FC<IRegisterProps> = () => {
               <Link to={"/login"}>Have an account?</Link>
             </p>
 
-            {errors && <BackendErrors errors={errors} />}
+            {validationErrors && <BackendErrors errors={validationErrors} />}
 
             <form onSubmit={onSubmit}>
               <fieldset>
@@ -80,6 +79,7 @@ const Register: React.FC<IRegisterProps> = () => {
                 </fieldset>
 
                 <button
+                  disabled={isSubmitting}
                   className="btn btn-lg btn-primary pull-xs-right"
                   type="submit"
                 >
