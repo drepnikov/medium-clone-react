@@ -1,5 +1,5 @@
-import React from 'react';
-import { Register } from "src/auth/auth.module";
+import React from "react";
+import { Register } from "src/auth/auth.feature";
 
 const App: React.FC = () => {
   return (
@@ -7,6 +7,6 @@ const App: React.FC = () => {
       <Register />
     </>
   );
-}
+};
 
 export default App;
