@@ -1,5 +1,10 @@
 import * as React from "react";
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useCallback,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
 
 import { BackendErrors } from "src/shared/components/backendErrors/backendErrors.component";
@@ -9,13 +14,14 @@ import {
   useValidationErrorsSelector,
 } from "src/auth/store/selectors";
 import { loginThunk } from "src/auth/store/thunks/login.thunk";
+import { clearBackendErrors } from "src/auth/store/reducer";
 
 interface IRegisterProps {}
 
 const Login: React.FC<IRegisterProps> = () => {
+  const dispatch = useAppDispatch();
   const validationErrors = useValidationErrorsSelector();
   const isSubmitting = useIsSubmittingSelector();
-  const dispatch = useAppDispatch();
 
   const [formFields, setFormFields] = useState({
     email: "",
@@ -26,6 +32,9 @@ const Login: React.FC<IRegisterProps> = () => {
     setFormFields((prev) => ({ ...prev, email: e.target.value }));
   const setPassword: ChangeEventHandler<HTMLInputElement> = (e) =>
     setFormFields((prev) => ({ ...prev, password: e.target.value }));
+  const dispatchClearBackendErrors = useCallback(() => {
+    if (validationErrors) dispatch(clearBackendErrors());
+  }, [dispatch, validationErrors]);
 
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -40,7 +49,9 @@ const Login: React.FC<IRegisterProps> = () => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Sign in</h1>
             <p className="text-xs-center">
-              <Link to={"/auth/register"}>Need an account?</Link>
+              <Link onClick={dispatchClearBackendErrors} to={"/auth/register"}>
+                Need an account?
+              </Link>
             </p>
 
             {validationErrors && <BackendErrors errors={validationErrors} />}

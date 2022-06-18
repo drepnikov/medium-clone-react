@@ -14,10 +14,13 @@ const initialState: AuthStateInterface = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    clearBackendErrors(state) {
+      state.validationErrors = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      // register
       .addCase(registerThunk.pending, (state) => {
         state.isSubmitting = true;
         state.validationErrors = null;
@@ -32,7 +35,8 @@ export const authSlice = createSlice({
         state.validationErrors = action.payload as BackendErrorsInterface;
       })
 
-      // login
+      // ---
+
       .addCase(loginThunk.pending, (state) => {
         state.isSubmitting = true;
         state.validationErrors = null;
@@ -48,5 +52,7 @@ export const authSlice = createSlice({
       });
   },
 });
+
+export const { clearBackendErrors } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

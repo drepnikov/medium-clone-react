@@ -1,5 +1,10 @@
 import * as React from "react";
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useCallback,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
 
 import { BackendErrors } from "src/shared/components/backendErrors/backendErrors.component";
@@ -9,6 +14,7 @@ import {
   useValidationErrorsSelector,
 } from "src/auth/store/selectors";
 import { registerThunk } from "src/auth/store/thunks/register.thunk";
+import { clearBackendErrors } from "src/auth/store/reducer";
 
 interface IRegisterProps {}
 
@@ -30,6 +36,10 @@ const Register: React.FC<IRegisterProps> = () => {
   const setPassword: ChangeEventHandler<HTMLInputElement> = (e) =>
     setFormFields((prev) => ({ ...prev, password: e.target.value }));
 
+  const dispatchClearBackendErrors = useCallback(() => {
+    if (validationErrors) dispatch(clearBackendErrors());
+  }, [dispatch, validationErrors]);
+
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
@@ -43,7 +53,9 @@ const Register: React.FC<IRegisterProps> = () => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Sign up</h1>
             <p className="text-xs-center">
-              <Link to={"/auth/login"}>Have an account?</Link>
+              <Link onClick={dispatchClearBackendErrors} to={"/auth/login"}>
+                Have an account?
+              </Link>
             </p>
 
             {validationErrors && <BackendErrors errors={validationErrors} />}
