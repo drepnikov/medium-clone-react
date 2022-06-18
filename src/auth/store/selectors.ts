@@ -8,3 +8,9 @@ export const useValidationErrorsSelector = () =>
 
 export const useIsLoggedInSelector = () =>
   useAppSelector((state) => state.auth.isLoggedIn);
+
+export const useIsAnonymousSelector = () =>
+  useAppSelector((state) => state.auth.isLoggedIn === false);
+
+export const useCurrentsUserSelector = () =>
+  useAppSelector((state) => state.auth.currentUser);

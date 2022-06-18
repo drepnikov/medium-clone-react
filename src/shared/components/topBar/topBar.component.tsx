@@ -1,0 +1,79 @@
+import * as React from "react";
+import { Link } from "react-router-dom";
+import {
+  useCurrentsUserSelector,
+  useIsAnonymousSelector,
+  useIsLoggedInSelector,
+} from "src/auth/store/selectors";
+
+interface ITopBarProps {}
+
+const TopBar: React.FC<ITopBarProps> = () => {
+  const isLoggedIn = useIsLoggedInSelector();
+  const isAnonymous = useIsAnonymousSelector();
+  const currentsUser = useCurrentsUserSelector();
+
+  return (
+    <nav className="navbar navbar-light">
+      <div className="container">
+        <Link className="navbar-brand" to={"/"}>
+          medium
+        </Link>
+        <ul className={"nav navbar-nav pull-xs-right"}>
+          <li className="nav-item">
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+          </li>
+
+          {isLoggedIn && currentsUser && (
+            <>
+              <li className="nav-item">
+                <Link to="/articles/new" className="nav-link">
+                  <i className="ion-compose"></i> New Post
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/settings" className="nav-link">
+                  <i className="ion-gear-a"></i> Settings
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to={`/profiles/${currentsUser.username}`}
+                  className="nav-link"
+                >
+                  {currentsUser.image && (
+                    <img
+                      className="user-pic"
+                      src={currentsUser.image || ""}
+                      alt={"avatar"}
+                    ></img>
+                  )}{" "}
+                  {currentsUser.username}
+                </Link>
+              </li>
+            </>
+          )}
+
+          {isAnonymous && (
+            <>
+              <li className="nav-item">
+                <Link to="/auth/login" className="nav-link">
+                  Sign In
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/auth/register" className="nav-link">
+                  Sign up
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </div>
+    </nav>
+  );
+};
+
+export { TopBar };
