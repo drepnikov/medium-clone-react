@@ -8,23 +8,20 @@ import {
   useIsSubmittingSelector,
   useValidationErrorsSelector,
 } from "src/auth/store/selectors";
-import { registerThunk } from "src/auth/store/thunks/register.thunk";
+import { loginThunk } from "src/auth/store/thunks/login.thunk";
 
 interface IRegisterProps {}
 
-const Register: React.FC<IRegisterProps> = () => {
+const Login: React.FC<IRegisterProps> = () => {
   const validationErrors = useValidationErrorsSelector();
   const isSubmitting = useIsSubmittingSelector();
   const dispatch = useAppDispatch();
 
   const [formFields, setFormFields] = useState({
-    username: "",
     email: "",
     password: "",
   });
 
-  const setName: ChangeEventHandler<HTMLInputElement> = (e) =>
-    setFormFields((prev) => ({ ...prev, username: e.target.value }));
   const setEmail: ChangeEventHandler<HTMLInputElement> = (e) =>
     setFormFields((prev) => ({ ...prev, email: e.target.value }));
   const setPassword: ChangeEventHandler<HTMLInputElement> = (e) =>
@@ -33,7 +30,7 @@ const Register: React.FC<IRegisterProps> = () => {
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    dispatch(registerThunk({ user: formFields }));
+    dispatch(loginThunk({ user: formFields }));
   };
 
   return (
@@ -41,24 +38,15 @@ const Register: React.FC<IRegisterProps> = () => {
       <div className="container page">
         <div className="row">
           <div className="col-md-6 offset-md-3 col-xs-12">
-            <h1 className="text-xs-center">Sign up</h1>
+            <h1 className="text-xs-center">Sign in</h1>
             <p className="text-xs-center">
-              <Link to={"/auth/login"}>Have an account?</Link>
+              <Link to={"/auth/register"}>Need an account?</Link>
             </p>
 
             {validationErrors && <BackendErrors errors={validationErrors} />}
 
             <form onSubmit={onSubmit}>
               <fieldset>
-                <fieldset className="form-group">
-                  <input
-                    onChange={setName}
-                    value={formFields.username}
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="Username"
-                  />
-                </fieldset>
                 <fieldset className="form-group">
                   <input
                     onChange={setEmail}
@@ -94,4 +82,4 @@ const Register: React.FC<IRegisterProps> = () => {
   );
 };
 
-export { Register };
+export { Login };

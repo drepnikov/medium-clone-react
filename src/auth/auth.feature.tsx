@@ -1,5 +1,6 @@
 import { Register } from "src/auth/components/register/register.component";
 import { Navigate, Route } from "react-router-dom";
+import { Login } from "src/auth/components/login/login.component";
 
 class AuthFeature {
   getRouter(isLoggedIn: boolean | null) {
@@ -12,7 +13,7 @@ class AuthFeature {
         />
         <Route
           path={"login"}
-          element={isLoggedIn ? <Navigate to={"/"} /> : <>Страница логина</>}
+          element={isLoggedIn ? <Navigate to={"/"} /> : <Login />}
         />
       </Route>
     );

@@ -1,3 +1,3 @@
-export interface RegisterRequestParamsInterface {
+export interface RegisterRequestInterface {
   user: { username: string; password: string; email: string };
 }

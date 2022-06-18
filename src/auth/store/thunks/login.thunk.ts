@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authService } from "src/auth/services/auth.service";
 import { persistanceService } from "src/shared/services/persistance.service";
-import { RegisterRequestInterface } from "src/auth/types/registerRequest.interface";
+import { LoginRequestInterface } from "src/auth/types/loginRequest.interface";
 
-export const registerThunk = createAsyncThunk(
-  "auth/register",
-  async (request: RegisterRequestInterface, { rejectWithValue }) => {
-    const { result, error } = await authService.register(request);
+export const loginThunk = createAsyncThunk(
+  "auth/login",
+  async (request: LoginRequestInterface, { rejectWithValue }) => {
+    const { result, error } = await authService.login(request);
 
     if (result) {
       persistanceService.set("accessToken", result.user.token);
