@@ -14,3 +14,6 @@ export const useIsAnonymousSelector = () =>
 
 export const useCurrentsUserSelector = () =>
   useAppSelector((state) => state.auth.currentUser);
+
+export const useIsLoadingSelector = () =>
+  useAppSelector((state) => state.auth.isLoading);

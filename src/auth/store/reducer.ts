@@ -3,12 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { registerThunk } from "src/auth/store/thunks/register.thunk";
 import { BackendErrorsInterface } from "src/shared/types/backendErrors.interface";
 import { loginThunk } from "src/auth/store/thunks/login.thunk";
+import { getCurrentUserThunk } from "src/auth/store/thunks/getCurrentUser.thunk";
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,
   isLoggedIn: null,
   validationErrors: null,
   currentUser: null,
+  isLoading: false,
 };
 
 export const authSlice = createSlice({
@@ -43,12 +45,28 @@ export const authSlice = createSlice({
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.isSubmitting = false;
-        state.currentUser = action.payload?.user || null;
+        state.currentUser = action.payload.user;
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.rejected, (state, action) => {
         state.isSubmitting = false;
         state.validationErrors = action.payload as BackendErrorsInterface;
+      })
+
+      // ---
+
+      .addCase(getCurrentUserThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCurrentUserThunk.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.isLoading = false;
+        state.currentUser = action.payload.user;
+      })
+      .addCase(getCurrentUserThunk.rejected, (state) => {
+        state.isLoading = false;
+        state.isLoggedIn = false;
+        state.currentUser = null;
       });
   },
 });
