@@ -15,6 +15,7 @@ import {
 } from "src/features/auth/store/selectors";
 import { registerThunk } from "src/features/auth/store/thunks/register.thunk";
 import { clearBackendErrors } from "src/features/auth/store/reducer";
+import { AuthFeature } from "src/features/auth/auth.feature";
 
 interface IRegisterProps {}
 
@@ -53,7 +54,10 @@ const Register: React.FC<IRegisterProps> = () => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Sign up</h1>
             <p className="text-xs-center">
-              <Link onClick={dispatchClearBackendErrors} to={"/auth/login"}>
+              <Link
+                onClick={dispatchClearBackendErrors}
+                to={AuthFeature.PATHS.login}
+              >
                 Have an account?
               </Link>
             </p>
