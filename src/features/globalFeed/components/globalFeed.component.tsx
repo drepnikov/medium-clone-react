@@ -1,16 +1,15 @@
 import * as React from "react";
-import { Feed } from "src/shared/components/feed/feed.component";
+import { FeedComponent } from "src/shared/components/feed/feed.component";
 
-interface IGlobalFeedProps {}
+interface IGlobalFeedComponentProps {}
 
-const GlobalFeed: React.FC<IGlobalFeedProps> = () => {
+const GlobalFeedComponent: React.FC<IGlobalFeedComponentProps> = () => {
   return (
     <div>
       <div>Я - глобал фид</div>
-
-      <Feed />
+      <FeedComponent />
     </div>
   );
 };
 
-export { GlobalFeed };
+export { GlobalFeedComponent };

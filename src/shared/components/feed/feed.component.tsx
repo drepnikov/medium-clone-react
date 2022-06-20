@@ -1,9 +1,9 @@
 import * as React from "react";
 
-interface IFeedProps {}
+interface IFeedComponentProps {}
 
-const Feed: React.FC<IFeedProps> = () => {
+const FeedComponent: React.FC<IFeedComponentProps> = () => {
   return <div>Я - шеребал фид</div>;
 };
 
-export { Feed };
+export { FeedComponent };

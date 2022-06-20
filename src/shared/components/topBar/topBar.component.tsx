@@ -7,9 +7,9 @@ import {
 } from "src/features/auth/store/selectors";
 import { AuthFeature } from "src/features/auth/auth.feature";
 
-interface ITopBarProps {}
+interface ITopBarComponentProps {}
 
-const TopBar: React.FC<ITopBarProps> = () => {
+const TopBarComponent: React.FC<ITopBarComponentProps> = () => {
   const isLoggedIn = useIsLoggedInSelector();
   const isAnonymous = useIsAnonymousSelector();
   const currentsUser = useCurrentsUserSelector();
@@ -77,4 +77,4 @@ const TopBar: React.FC<ITopBarProps> = () => {
   );
 };
 
-export { TopBar };
+export { TopBarComponent };

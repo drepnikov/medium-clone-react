@@ -7,7 +7,7 @@ import {
 } from "react";
 import { Link } from "react-router-dom";
 
-import { BackendErrors } from "src/shared/components/backendErrors/backendErrors.component";
+import { BackendErrorsComponent } from "src/shared/components/backendErrors/backendErrors.component";
 import { useAppDispatch } from "src/shared/store/hooks/store.hook";
 import {
   useIsSubmittingSelector,
@@ -17,9 +17,9 @@ import { registerThunk } from "src/features/auth/store/thunks/register.thunk";
 import { clearBackendErrors } from "src/features/auth/store/reducer";
 import { AuthFeature } from "src/features/auth/auth.feature";
 
-interface IRegisterProps {}
+interface IRegisterComponentProps {}
 
-const Register: React.FC<IRegisterProps> = () => {
+const RegisterComponent: React.FC<IRegisterComponentProps> = () => {
   const validationErrors = useValidationErrorsSelector();
   const isSubmitting = useIsSubmittingSelector();
   const dispatch = useAppDispatch();
@@ -62,7 +62,9 @@ const Register: React.FC<IRegisterProps> = () => {
               </Link>
             </p>
 
-            {validationErrors && <BackendErrors errors={validationErrors} />}
+            {validationErrors && (
+              <BackendErrorsComponent errors={validationErrors} />
+            )}
 
             <form onSubmit={onSubmit}>
               <fieldset>
@@ -110,4 +112,4 @@ const Register: React.FC<IRegisterProps> = () => {
   );
 };
 
-export { Register };
+export { RegisterComponent };

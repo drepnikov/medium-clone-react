@@ -1,5 +1,6 @@
+import { Fragment } from "react";
 import { Route } from "react-router-dom";
-import { GlobalFeed } from "src/features/globalFeed/components/globalFeed.component";
+import { GlobalFeedComponent } from "src/features/globalFeed/components/globalFeed.component";
 
 class GlobalFeedFeature {
   static PATHS = {
@@ -8,9 +9,12 @@ class GlobalFeedFeature {
 
   getRouter() {
     return (
-      <>
-        <Route path={GlobalFeedFeature.PATHS.feed} element={<GlobalFeed />} />
-      </>
+      <Fragment key={"feed"}>
+        <Route
+          path={GlobalFeedFeature.PATHS.feed}
+          element={<GlobalFeedComponent />}
+        />
+      </Fragment>
     );
   }
 }

@@ -6,13 +6,13 @@ import { Provider } from "react-redux";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { store } from "src/shared/store/store";
+import { appStore } from "src/shared/store/appStore";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <Provider store={store}>
+  <Provider store={appStore}>
     <Router>
       <App />
     </Router>

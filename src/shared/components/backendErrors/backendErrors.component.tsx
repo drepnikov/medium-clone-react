@@ -1,11 +1,13 @@
 import * as React from "react";
 import { BackendErrorsInterface } from "src/shared/types/backendErrors.interface";
 
-interface IBackendErrorsProps {
+interface IBackendErrorsComponentProps {
   errors: BackendErrorsInterface;
 }
 
-const BackendErrors: React.FC<IBackendErrorsProps> = ({ errors }) => {
+const BackendErrorsComponent: React.FC<IBackendErrorsComponentProps> = ({
+  errors,
+}) => {
   return (
     <ul className="error-messages">
       {Object.keys(errors).map((name) => {
@@ -17,4 +19,4 @@ const BackendErrors: React.FC<IBackendErrorsProps> = ({ errors }) => {
   );
 };
 
-export { BackendErrors };
+export { BackendErrorsComponent };

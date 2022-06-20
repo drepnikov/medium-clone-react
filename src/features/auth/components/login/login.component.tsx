@@ -7,7 +7,7 @@ import {
 } from "react";
 import { Link } from "react-router-dom";
 
-import { BackendErrors } from "src/shared/components/backendErrors/backendErrors.component";
+import { BackendErrorsComponent } from "src/shared/components/backendErrors/backendErrors.component";
 import { useAppDispatch } from "src/shared/store/hooks/store.hook";
 import {
   useIsSubmittingSelector,
@@ -17,9 +17,9 @@ import { loginThunk } from "src/features/auth/store/thunks/login.thunk";
 import { clearBackendErrors } from "src/features/auth/store/reducer";
 import { AuthFeature } from "src/features/auth/auth.feature";
 
-interface IRegisterProps {}
+interface ILoginComponentProps {}
 
-const Login: React.FC<IRegisterProps> = () => {
+const LoginComponent: React.FC<ILoginComponentProps> = () => {
   const dispatch = useAppDispatch();
   const validationErrors = useValidationErrorsSelector();
   const isSubmitting = useIsSubmittingSelector();
@@ -58,7 +58,9 @@ const Login: React.FC<IRegisterProps> = () => {
               </Link>
             </p>
 
-            {validationErrors && <BackendErrors errors={validationErrors} />}
+            {validationErrors && (
+              <BackendErrorsComponent errors={validationErrors} />
+            )}
 
             <form onSubmit={onSubmit}>
               <fieldset>
@@ -97,4 +99,4 @@ const Login: React.FC<IRegisterProps> = () => {
   );
 };
 
-export { Login };
+export { LoginComponent };
