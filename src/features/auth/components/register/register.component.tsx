@@ -12,26 +12,30 @@ import { useAppDispatch } from "src/shared/store/hooks/store.hook";
 import {
   useIsSubmittingSelector,
   useValidationErrorsSelector,
-} from "src/auth/store/selectors";
-import { loginThunk } from "src/auth/store/thunks/login.thunk";
-import { clearBackendErrors } from "src/auth/store/reducer";
+} from "src/features/auth/store/selectors";
+import { registerThunk } from "src/features/auth/store/thunks/register.thunk";
+import { clearBackendErrors } from "src/features/auth/store/reducer";
 
 interface IRegisterProps {}
 
-const Login: React.FC<IRegisterProps> = () => {
-  const dispatch = useAppDispatch();
+const Register: React.FC<IRegisterProps> = () => {
   const validationErrors = useValidationErrorsSelector();
   const isSubmitting = useIsSubmittingSelector();
+  const dispatch = useAppDispatch();
 
   const [formFields, setFormFields] = useState({
+    username: "",
     email: "",
     password: "",
   });
 
+  const setName: ChangeEventHandler<HTMLInputElement> = (e) =>
+    setFormFields((prev) => ({ ...prev, username: e.target.value }));
   const setEmail: ChangeEventHandler<HTMLInputElement> = (e) =>
     setFormFields((prev) => ({ ...prev, email: e.target.value }));
   const setPassword: ChangeEventHandler<HTMLInputElement> = (e) =>
     setFormFields((prev) => ({ ...prev, password: e.target.value }));
+
   const dispatchClearBackendErrors = useCallback(() => {
     if (validationErrors) dispatch(clearBackendErrors());
   }, [dispatch, validationErrors]);
@@ -39,7 +43,7 @@ const Login: React.FC<IRegisterProps> = () => {
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    dispatch(loginThunk({ user: formFields }));
+    dispatch(registerThunk({ user: formFields }));
   };
 
   return (
@@ -47,10 +51,10 @@ const Login: React.FC<IRegisterProps> = () => {
       <div className="container page">
         <div className="row">
           <div className="col-md-6 offset-md-3 col-xs-12">
-            <h1 className="text-xs-center">Sign in</h1>
+            <h1 className="text-xs-center">Sign up</h1>
             <p className="text-xs-center">
-              <Link onClick={dispatchClearBackendErrors} to={"/auth/register"}>
-                Need an account?
+              <Link onClick={dispatchClearBackendErrors} to={"/auth/login"}>
+                Have an account?
               </Link>
             </p>
 
@@ -58,6 +62,15 @@ const Login: React.FC<IRegisterProps> = () => {
 
             <form onSubmit={onSubmit}>
               <fieldset>
+                <fieldset className="form-group">
+                  <input
+                    onChange={setName}
+                    value={formFields.username}
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Username"
+                  />
+                </fieldset>
                 <fieldset className="form-group">
                   <input
                     onChange={setEmail}
@@ -93,4 +106,4 @@ const Login: React.FC<IRegisterProps> = () => {
   );
 };
 
-export { Login };
+export { Register };

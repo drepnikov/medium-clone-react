@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { authService } from "src/auth/services/auth.service";
+import { authService } from "src/features/auth/services/auth.service";
 import { persistanceService } from "src/shared/services/persistance.service";
 
 export const getCurrentUserThunk = createAsyncThunk(

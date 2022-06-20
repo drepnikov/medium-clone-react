@@ -1,9 +1,9 @@
-import { AuthStateInterface } from "src/auth/types/authState.interface";
+import { AuthStateInterface } from "src/features/auth/types/authState.interface";
 import { createSlice } from "@reduxjs/toolkit";
-import { registerThunk } from "src/auth/store/thunks/register.thunk";
+import { registerThunk } from "src/features/auth/store/thunks/register.thunk";
 import { BackendErrorsInterface } from "src/shared/types/backendErrors.interface";
-import { loginThunk } from "src/auth/store/thunks/login.thunk";
-import { getCurrentUserThunk } from "src/auth/store/thunks/getCurrentUser.thunk";
+import { loginThunk } from "src/features/auth/store/thunks/login.thunk";
+import { getCurrentUserThunk } from "src/features/auth/store/thunks/getCurrentUser.thunk";
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,

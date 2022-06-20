@@ -4,7 +4,7 @@ import {
   useCurrentsUserSelector,
   useIsAnonymousSelector,
   useIsLoggedInSelector,
-} from "src/auth/store/selectors";
+} from "src/features/auth/store/selectors";
 
 interface ITopBarProps {}
 

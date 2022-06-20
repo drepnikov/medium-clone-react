@@ -1,8 +1,8 @@
 import { httpService } from "src/shared/services/http.service";
 import { environment } from "src/config/environment";
-import { RegisterRequestInterface } from "src/auth/types/registerRequest.interface";
-import { AuthResponseInterface } from "src/auth/types/authResponse.interface";
-import { LoginRequestInterface } from "src/auth/types/loginRequest.interface";
+import { RegisterRequestInterface } from "src/features/auth/types/registerRequest.interface";
+import { AuthResponseInterface } from "src/features/auth/types/authResponse.interface";
+import { LoginRequestInterface } from "src/features/auth/types/loginRequest.interface";
 import { persistanceService } from "src/shared/services/persistance.service";
 
 export class AuthService {

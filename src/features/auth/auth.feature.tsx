@@ -1,6 +1,6 @@
-import { Register } from "src/auth/components/register/register.component";
+import { Register } from "src/features/auth/components/register/register.component";
 import { Navigate, Route } from "react-router-dom";
-import { Login } from "src/auth/components/login/login.component";
+import { Login } from "src/features/auth/components/login/login.component";
 
 class AuthFeature {
   getRouter(isLoggedIn: boolean | null) {
