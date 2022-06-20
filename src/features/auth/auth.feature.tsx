@@ -11,8 +11,7 @@ export class AuthFeature {
 
   getRouter(isLoggedIn: boolean | null) {
     return (
-      <Route key={AuthFeature.PATHS.auth} path={AuthFeature.PATHS.auth}>
-        <Route index element={<Navigate to={AuthFeature.PATHS.register} />} />
+      <>
         <Route
           path={AuthFeature.PATHS.register}
           element={
@@ -25,7 +24,7 @@ export class AuthFeature {
             isLoggedIn ? <Navigate to={AuthFeature.PATHS.auth} /> : <Login />
           }
         />
-      </Route>
+      </>
     );
   }
 }
