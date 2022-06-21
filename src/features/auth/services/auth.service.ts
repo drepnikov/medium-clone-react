@@ -3,7 +3,7 @@ import { environment } from "src/config/environment";
 import { RegisterRequestInterface } from "src/features/auth/types/registerRequest.interface";
 import { AuthResponseInterface } from "src/features/auth/types/authResponse.interface";
 import { LoginRequestInterface } from "src/features/auth/types/loginRequest.interface";
-import { persistanceService } from "src/shared/services/persistance.service";
+import { persistanceService } from "src/shared/services/persistance/persistance.service";
 
 export class AuthService {
   api = environment.apiUrl;

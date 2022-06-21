@@ -1,7 +1,9 @@
 export class PersistanceService {
+  constructor(private storage: Storage) {}
+
   set(key: string, data: any) {
     try {
-      localStorage.setItem(key, JSON.stringify(data));
+      this.storage.setItem(key, JSON.stringify(data));
     } catch (e) {
       console.error("Error saving to localStorage");
     }
@@ -9,7 +11,7 @@ export class PersistanceService {
 
   get(key: string): any {
     try {
-      const data = localStorage.getItem(key);
+      const data = this.storage.getItem(key);
 
       return data && JSON.parse(data);
     } catch (e) {
@@ -20,4 +22,4 @@ export class PersistanceService {
   }
 }
 
-export const persistanceService = new PersistanceService();
+export const persistanceService = new PersistanceService(localStorage);
