@@ -16,7 +16,7 @@ const localStorageMock: StorageMock = {
   },
 
   length: 0,
-  removeItem(_) {},
+  removeItem() {},
   clear() {},
   key(): string | null {
     return null;
