@@ -23,9 +23,9 @@ const localStorageMock: StorageMock = {
   },
 };
 
-const persistanceStorageForTests = new PersistanceService(localStorageMock);
-
 test("Set and get persistance data in/from storage", () => {
+  const persistanceStorageForTests = new PersistanceService(localStorageMock);
+
   persistanceStorageForTests.set("data", { foo: "bar" });
 
   const value = persistanceStorageForTests.get("data");
