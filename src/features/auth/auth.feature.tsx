@@ -2,22 +2,19 @@ import { Fragment } from "react";
 import { Navigate, Route } from "react-router-dom";
 import { LoginComponent } from "src/features/auth/components/login/login.component";
 import { RegisterComponent } from "src/features/auth/components/register/register.component";
+import { PathsEnum } from "src/shared/types/paths.enum";
+import { FeatureInterface } from "src/types";
 
-export class AuthFeature {
-  static PATHS = {
-    register: "/auth/register",
-    login: "/auth/login",
-  };
-
-  getRouter(isLoggedIn: boolean | null) {
+export class AuthFeature implements FeatureInterface {
+  router(isLoggedIn: boolean | null) {
     return (
       <Fragment key={"auth"}>
         <Route
-          path={AuthFeature.PATHS.register}
+          path={PathsEnum.register}
           element={isLoggedIn ? <Navigate to={"/"} /> : <RegisterComponent />}
         />
         <Route
-          path={AuthFeature.PATHS.login}
+          path={PathsEnum.login}
           element={isLoggedIn ? <Navigate to={"/"} /> : <LoginComponent />}
         />
       </Fragment>

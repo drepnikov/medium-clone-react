@@ -1,4 +1,4 @@
-import { useAppSelector } from "src/shared/store/hooks/store.hook";
+import { useAppSelector } from "src/store/hooks/store.hook";
 
 export const useIsSubmittingSelector = () =>
   useAppSelector((state) => state.auth.isSubmitting);

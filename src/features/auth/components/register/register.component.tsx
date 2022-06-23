@@ -8,14 +8,14 @@ import {
 import { Link } from "react-router-dom";
 
 import { BackendErrorsComponent } from "src/shared/components/backendErrors/backendErrors.component";
-import { useAppDispatch } from "src/shared/store/hooks/store.hook";
+import { useAppDispatch } from "src/store/hooks/store.hook";
 import {
   useIsSubmittingSelector,
   useValidationErrorsSelector,
 } from "src/features/auth/store/selectors";
 import { registerThunk } from "src/features/auth/store/thunks/register.thunk";
 import { clearBackendErrors } from "src/features/auth/store/reducer";
-import { AuthFeature } from "src/features/auth/auth.feature";
+import { PathsEnum } from "src/shared/types/paths.enum";
 
 interface IRegisterComponentProps {}
 
@@ -54,10 +54,7 @@ const RegisterComponent: React.FC<IRegisterComponentProps> = () => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Sign up</h1>
             <p className="text-xs-center">
-              <Link
-                onClick={dispatchClearBackendErrors}
-                to={AuthFeature.PATHS.login}
-              >
+              <Link onClick={dispatchClearBackendErrors} to={PathsEnum.login}>
                 Have an account?
               </Link>
             </p>

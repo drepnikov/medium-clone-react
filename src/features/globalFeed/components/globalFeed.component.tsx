@@ -7,6 +7,7 @@ const GlobalFeedComponent: React.FC<IGlobalFeedComponentProps> = () => {
   return (
     <div>
       <div>Я - глобал фид</div>
+
       <FeedComponent />
     </div>
   );

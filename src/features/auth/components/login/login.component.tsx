@@ -8,14 +8,14 @@ import {
 import { Link } from "react-router-dom";
 
 import { BackendErrorsComponent } from "src/shared/components/backendErrors/backendErrors.component";
-import { useAppDispatch } from "src/shared/store/hooks/store.hook";
+import { useAppDispatch } from "src/store/hooks/store.hook";
 import {
   useIsSubmittingSelector,
   useValidationErrorsSelector,
 } from "src/features/auth/store/selectors";
 import { loginThunk } from "src/features/auth/store/thunks/login.thunk";
 import { clearBackendErrors } from "src/features/auth/store/reducer";
-import { AuthFeature } from "src/features/auth/auth.feature";
+import { PathsEnum } from "src/shared/types/paths.enum";
 
 interface ILoginComponentProps {}
 
@@ -52,7 +52,7 @@ const LoginComponent: React.FC<ILoginComponentProps> = () => {
             <p className="text-xs-center">
               <Link
                 onClick={dispatchClearBackendErrors}
-                to={AuthFeature.PATHS.register}
+                to={PathsEnum.register}
               >
                 Need an account?
               </Link>
