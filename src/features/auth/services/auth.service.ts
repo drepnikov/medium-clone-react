@@ -1,4 +1,4 @@
-import { httpService } from "src/shared/services/http.service";
+import { httpService } from "src/shared/services/http/http.service";
 import { environment } from "src/config/environment";
 import { RegisterRequestInterface } from "src/features/auth/types/registerRequest.interface";
 import { AuthResponseInterface } from "src/features/auth/types/authResponse.interface";

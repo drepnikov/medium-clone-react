@@ -1,17 +1,9 @@
-import { BackendErrorsInterface } from "src/shared/types/backendErrors.interface";
+import { HttpRequestInterface } from "src/shared/services/http/types/httpRequest.interface";
+import { HttpResponseInterface } from "src/shared/services/http/types/httpResponse.interface";
 
 /**
  * Из-за реализации метода setPersistenceHeader, HttpService обязан использоваться в качестве синглтона
  */
-
-interface HttpServiceRequestInterface {
-  url: string;
-  method: string;
-  data?: any;
-  headers?: {
-    [key: string]: string;
-  };
-}
 
 export class HttpService {
   private persistanceHeaders: { [key: string]: string } = {};
@@ -21,10 +13,7 @@ export class HttpService {
     data,
     headers,
     method,
-  }: HttpServiceRequestInterface): Promise<{
-    result?: R;
-    error?: { status: number; msg?: BackendErrorsInterface };
-  }> {
+  }: HttpRequestInterface): Promise<HttpResponseInterface<R>> {
     let headersToSend = { ...headers, "content-type": "application/json" };
 
     if (this.persistanceHeaders) {
