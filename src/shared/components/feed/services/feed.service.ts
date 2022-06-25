@@ -10,4 +10,4 @@ export class FeedService {
   }
 }
 
-const feedService = new FeedService();
+export const feedService = new FeedService();
