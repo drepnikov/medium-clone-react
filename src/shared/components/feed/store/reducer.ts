@@ -21,7 +21,8 @@ export const feedSlice = createSlice({
         state.isLoading = false;
         state.data = action.payload;
       })
-      .addCase(getFeedThunk.rejected, (state) => {
+      .addCase(getFeedThunk.rejected, (state, action) => {
+        state.error = action.payload as string;
         state.isLoading = false;
       });
   },

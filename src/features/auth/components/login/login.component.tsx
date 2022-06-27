@@ -15,7 +15,7 @@ import {
 } from "src/features/auth/store/selectors";
 import { loginThunk } from "src/features/auth/store/thunks/login.thunk";
 import { clearBackendErrors } from "src/features/auth/store/reducer";
-import { PathsEnum } from "src/shared/types/paths.enum";
+import { PATHS } from "src/config/paths";
 
 interface ILoginComponentProps {}
 
@@ -50,10 +50,7 @@ const LoginComponent: React.FC<ILoginComponentProps> = () => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Sign in</h1>
             <p className="text-xs-center">
-              <Link
-                onClick={dispatchClearBackendErrors}
-                to={PathsEnum.register}
-              >
+              <Link onClick={dispatchClearBackendErrors} to={PATHS.register}>
                 Need an account?
               </Link>
             </p>

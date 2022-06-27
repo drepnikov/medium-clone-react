@@ -1,14 +1,14 @@
 import { Fragment } from "react";
 import { Route } from "react-router-dom";
 import { GlobalFeedComponent } from "src/features/globalFeed/components/globalFeed.component";
-import { PathsEnum } from "src/shared/types/paths.enum";
 import { FeatureInterface } from "src/types";
+import { PATHS } from "src/config/paths";
 
 class GlobalFeedFeature implements FeatureInterface {
   router() {
     return (
       <Fragment key={"feed"}>
-        <Route path={PathsEnum.feed} element={<GlobalFeedComponent />} />
+        <Route path={PATHS.feed} element={<GlobalFeedComponent />} />
       </Fragment>
     );
   }

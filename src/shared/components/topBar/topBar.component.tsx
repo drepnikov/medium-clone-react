@@ -5,7 +5,7 @@ import {
   useIsAnonymousSelector,
   useIsLoggedInSelector,
 } from "src/features/auth/store/selectors";
-import { PathsEnum } from "src/shared/types/paths.enum";
+import { PATHS } from "src/config/paths";
 
 interface ITopBarComponentProps {}
 
@@ -41,7 +41,7 @@ const TopBarComponent: React.FC<ITopBarComponentProps> = () => {
               </li>
               <li className="nav-item">
                 <Link
-                  to={`/profiles/${currentsUser.username}`}
+                  to={PATHS.profile(currentsUser.username)}
                   className="nav-link"
                 >
                   {currentsUser.image && (
@@ -60,12 +60,12 @@ const TopBarComponent: React.FC<ITopBarComponentProps> = () => {
           {isAnonymous && (
             <>
               <li className="nav-item">
-                <Link to={PathsEnum.login} className="nav-link">
+                <Link to={PATHS.login} className="nav-link">
                   Sign In
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={PathsEnum.register} className="nav-link">
+                <Link to={PATHS.register} className="nav-link">
                   Sign up
                 </Link>
               </li>

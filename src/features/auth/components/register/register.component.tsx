@@ -15,7 +15,7 @@ import {
 } from "src/features/auth/store/selectors";
 import { registerThunk } from "src/features/auth/store/thunks/register.thunk";
 import { clearBackendErrors } from "src/features/auth/store/reducer";
-import { PathsEnum } from "src/shared/types/paths.enum";
+import { PATHS } from "src/config/paths";
 
 interface IRegisterComponentProps {}
 
@@ -54,7 +54,7 @@ const RegisterComponent: React.FC<IRegisterComponentProps> = () => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Sign up</h1>
             <p className="text-xs-center">
-              <Link onClick={dispatchClearBackendErrors} to={PathsEnum.login}>
+              <Link onClick={dispatchClearBackendErrors} to={PATHS.login}>
                 Have an account?
               </Link>
             </p>

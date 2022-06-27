@@ -19,6 +19,8 @@ const App: React.FC = () => {
     }
   }, [dispatch, isLoggedIn]);
 
+  if (isLoggedIn === null) return <strong>Загрузка...</strong>;
+
   return (
     <>
       <TopBarComponent />
