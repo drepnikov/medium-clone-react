@@ -8,7 +8,7 @@ import {
   useIsLoadingSelector,
 } from "src/shared/components/feed/store/selectors";
 import { Link } from "react-router-dom";
-import { PATHS } from "src/config/paths";
+import { PATHS } from "src/environment/paths";
 
 interface IFeedComponentProps {
   url: string;

@@ -1,10 +1,10 @@
 import { GetFeedResponseInterface } from "src/shared/components/feed/types/getFeedResponse.interface";
 import { httpService } from "src/shared/services/http/http.service";
-import { environment } from "src/config/environment";
+import { config } from "src/environment/config";
 
 export class FeedService {
   getFeed(url: string) {
-    const fullUrl = environment.apiUrl + url;
+    const fullUrl = config.apiUrl + url;
 
     return httpService.get<GetFeedResponseInterface>(fullUrl);
   }

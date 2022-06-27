@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Route } from "react-router-dom";
 import { GlobalFeedComponent } from "src/features/globalFeed/components/globalFeed.component";
 import { FeatureInterface } from "src/types";
-import { PATHS } from "src/config/paths";
+import { PATHS } from "src/environment/paths";
 
 class GlobalFeedFeature implements FeatureInterface {
   router() {

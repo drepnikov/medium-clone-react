@@ -5,7 +5,7 @@ import {
   useIsAnonymousSelector,
   useIsLoggedInSelector,
 } from "src/features/auth/store/selectors";
-import { PATHS } from "src/config/paths";
+import { PATHS } from "src/environment/paths";
 
 interface ITopBarComponentProps {}
 

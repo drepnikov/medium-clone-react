@@ -3,7 +3,7 @@ import { Navigate, Route } from "react-router-dom";
 import { LoginComponent } from "src/features/auth/components/login/login.component";
 import { RegisterComponent } from "src/features/auth/components/register/register.component";
 import { FeatureInterface } from "src/types";
-import { PATHS } from "src/config/paths";
+import { PATHS } from "src/environment/paths";
 
 export class AuthFeature implements FeatureInterface {
   router(isLoggedIn: boolean | null) {

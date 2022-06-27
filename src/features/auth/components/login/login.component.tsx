@@ -15,7 +15,7 @@ import {
 } from "src/features/auth/store/selectors";
 import { loginThunk } from "src/features/auth/store/thunks/login.thunk";
 import { clearBackendErrors } from "src/features/auth/store/reducer";
-import { PATHS } from "src/config/paths";
+import { PATHS } from "src/environment/paths";
 
 interface ILoginComponentProps {}
 
