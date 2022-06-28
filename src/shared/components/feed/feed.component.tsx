@@ -1,28 +1,14 @@
 import * as React from "react";
-import { useEffect } from "react";
-import { useAppDispatch } from "src/store/hooks/store.hook";
-import { getFeedThunk } from "src/shared/components/feed/store/thunks/getFeed.thunk";
-import {
-  useFeedSelector,
-  useErrorSelector,
-  useIsLoadingSelector,
-} from "src/shared/components/feed/store/selectors";
 import { Link } from "react-router-dom";
 import { PATHS } from "src/environment/paths";
+import { useGetFeedEffect } from "src/shared/components/feed/hooks/useGetFeedEffect";
 
 interface IFeedComponentProps {
   url: string;
 }
 
 const FeedComponent: React.FC<IFeedComponentProps> = ({ url }) => {
-  const feed = useFeedSelector();
-  const isError = useErrorSelector();
-  const isLoading = useIsLoadingSelector();
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getFeedThunk({ url }));
-  }, [dispatch, url]);
+  const { feed, isLoading, isError } = useGetFeedEffect(url);
 
   if (isLoading) return <div>Загружаем фид...</div>;
   if (isError) return <div>Ошибка при загрузке фида</div>;
