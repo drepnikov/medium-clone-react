@@ -2,6 +2,8 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { PATHS } from "src/environment/paths";
 import { useGetFeedEffect } from "src/shared/components/feed/hooks/useGetFeedEffect";
+import { ErrorMessageComponent } from "src/shared/components/errorMessage/errorMessage.component";
+import { LoadingComponent } from "src/shared/components/loading/loading.component";
 
 interface IFeedComponentProps {
   url: string;
@@ -10,8 +12,8 @@ interface IFeedComponentProps {
 const FeedComponent: React.FC<IFeedComponentProps> = ({ url }) => {
   const { feed, isLoading, isError } = useGetFeedEffect(url);
 
-  if (isLoading) return <div>Загружаем фид...</div>;
-  if (isError) return <div>Ошибка при загрузке фида</div>;
+  if (isLoading) return <LoadingComponent />;
+  if (isError) return <ErrorMessageComponent />;
   if (feed)
     return (
       <div>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FeedComponent } from "src/shared/components/feed/feed.component";
+import { BannerComponent } from "src/shared/components/banner/banner.component";
 
 interface IGlobalFeedComponentProps {}
 
@@ -8,7 +9,7 @@ const API_URL = "/articles";
 const GlobalFeedComponent: React.FC<IGlobalFeedComponentProps> = () => {
   return (
     <div className={"home-page"}>
-      todo: !!HERE IS BANNER!!
+      <BannerComponent />
       <div className={"container page"}>
         <div className={"row"}>
           <div className={"col-md-9"}>
