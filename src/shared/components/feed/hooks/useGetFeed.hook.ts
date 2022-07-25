@@ -4,23 +4,19 @@ import {
   useIsLoadingSelector,
 } from "src/shared/components/feed/store/selectors";
 import { useAppDispatch } from "src/store/hooks/store.hook";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { getFeedThunk } from "src/shared/components/feed/store/thunks/getFeed.thunk";
 
-export const useGetFeedEffect = (url: string) => {
+export const useGetFeed = (url: string) => {
   const dispatch = useAppDispatch();
-  const init = useRef(true);
 
   const feed = useFeedSelector();
   const isError = useErrorSelector();
   const isLoading = useIsLoadingSelector();
 
   useEffect(() => {
-    if (init.current) {
-      init.current = false;
-      dispatch(getFeedThunk({ url }));
-    }
-  });
+    dispatch(getFeedThunk({ url }));
+  }, [dispatch, url]);
 
   return { feed, isError, isLoading };
 };

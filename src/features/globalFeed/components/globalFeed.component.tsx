@@ -14,7 +14,7 @@ const GlobalFeedComponent: React.FC<IGlobalFeedComponentProps> = () => {
         <div className={"row"}>
           <div className={"col-md-9"}>
             todo: !!HERE IS TOGGLER
-            <FeedComponent url={API_URL} />
+            <FeedComponent apiUrl={API_URL} />
           </div>
           <div className={"col-md-3"}>todo: !!HERE IS POPULAR TAGS!!</div>
         </div>

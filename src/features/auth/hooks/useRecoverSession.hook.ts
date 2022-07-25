@@ -3,7 +3,7 @@ import { getCurrentUserThunk } from "src/features/auth/store/thunks/getCurrentUs
 import { useAppDispatch } from "src/store/hooks/store.hook";
 import { useIsLoggedInSelector } from "src/features/auth/store/selectors";
 
-export const useRecoverSessionEffect = () => {
+export const useRecoverSession = () => {
   const dispatch = useAppDispatch();
   const isLoggedIn = useIsLoggedInSelector();
   const init = useRef(true);
